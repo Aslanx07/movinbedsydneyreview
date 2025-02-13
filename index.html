@@ -3,41 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mov'in Bed Cinema Reviews</title>
+    <title>Mov'in Bed Reviews</title>
     <style>
         body {
-            text-align: center;
             font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
         }
         img {
             width: 150px;
-            margin: 20px;
+            display: block;
+            margin: 0 auto;
         }
         .stars {
             font-size: 30px;
             cursor: pointer;
+            margin: 10px;
         }
     </style>
+    <script>
+        function rate(stars) {
+            if (stars <= 3) {
+                window.location.href = "feedback.html"; // Redirect to feedback form
+            } else {
+                alert("Thank you for your positive review!");
+            }
+        }
+    </script>
 </head>
 <body>
 
-    <h1>How was your experience at Mov'in Bed Cinema?</h1>
-    <p>We'd love to hear your feedback! Click the stars below to leave a review.</p>
+    <!-- Mov'in Bed Logo -->
+    <img src="logo.png" alt="Mov'in Bed Logo">
 
+    <h1>Welcome to Mov'in Bed Reviews!</h1>
+    <p>How would you rate your experience?</p>
+
+    <!-- Star Rating -->
     <div class="stars">
-        ⭐⭐⭐⭐⭐
+        <span onclick="rate(1)">⭐</span>
+        <span onclick="rate(2)">⭐ ⭐</span>
+        <span onclick="rate(3)">⭐ ⭐ ⭐</span>
+        <span onclick="rate(4)">⭐ ⭐ ⭐ ⭐</span>
+        <span onclick="rate(5)">⭐ ⭐ ⭐ ⭐ ⭐</span>
     </div>
-
-    <script>
-        document.querySelector('.stars').addEventListener('click', function(event) {
-            const stars = event.target.textContent.length;  
-            if (stars <= 3) {
-                window.location.href = "mailto:your-email@example.com";  
-            } else {
-                window.location.href = "https://g.page/r/CINEMA-REVIEW";  
-            }
-        });
-    </script>
 
 </body>
 </html>
