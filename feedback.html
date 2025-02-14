@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        form {
+            display: inline-block;
+            text-align: left;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>We value your feedback!</h1>
+    <p>Let us know how we can improve your experience.</p>
+    
+    <form action="submit_feedback.php" method="post">
+        <label for="name">Your Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+        
+        <label for="email">Your Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+        
+        <label for="comments">Your Feedback:</label><br>
+        <textarea id="comments" name="comments" rows="5" required></textarea><br><br>
+        
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

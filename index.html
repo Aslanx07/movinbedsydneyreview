@@ -6,47 +6,39 @@
     <title>Mov'in Bed Reviews</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
             text-align: center;
-            margin: 20px;
+            font-family: Arial, sans-serif;
         }
         img {
-            width: 150px;
-            display: block;
-            margin: 0 auto;
+            max-width: 200px;
+            margin-top: 20px;
         }
         .stars {
-            font-size: 30px;
+            font-size: 40px;
             cursor: pointer;
-            margin: 10px;
         }
     </style>
     <script>
-        function rate(stars) {
+        function rateExperience(stars) {
             if (stars <= 3) {
-                window.location.href = "feedback.html"; // Redirect to feedback form
+                window.location.href = "feedback.html"; // Redirects to feedback form
             } else {
-                alert("Thank you for your positive review!");
+                window.location.href = "https://maps.app.goo.gl/J7Lotp3YG6nWTmjh9"; // Replace with actual Google Review link
             }
         }
     </script>
 </head>
 <body>
-
-    <!-- Mov'in Bed Logo -->
-    <img src="logo.png" alt="Mov'in Bed Logo">
-
+    <img src="logo.png" alt="Mov'in Bed Logo"> 
     <h1>Welcome to Mov'in Bed Reviews!</h1>
     <p>How would you rate your experience?</p>
-
-    <!-- Star Rating -->
-    <div class="stars">
-        <span onclick="rate(1)">⭐</span>
-        <span onclick="rate(2)">⭐ ⭐</span>
-        <span onclick="rate(3)">⭐ ⭐ ⭐</span>
-        <span onclick="rate(4)">⭐ ⭐ ⭐ ⭐</span>
-        <span onclick="rate(5)">⭐ ⭐ ⭐ ⭐ ⭐</span>
+    
+    <div>
+        <span class="stars" onclick="rateExperience(1)">⭐</span>
+        <span class="stars" onclick="rateExperience(2)">⭐</span>
+        <span class="stars" onclick="rateExperience(3)">⭐</span>
+        <span class="stars" onclick="rateExperience(4)">⭐</span>
+        <span class="stars" onclick="rateExperience(5)">⭐</span>
     </div>
-
 </body>
 </html>
