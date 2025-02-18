@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feedback Form</title>
     <style>
@@ -17,20 +16,46 @@
     </style>
 </head>
 <body>
+
     <h1>We value your feedback!</h1>
     <p>Let us know how we can improve your experience.</p>
-    
-    <form action="submit_feedback.php" method="post">
+
+    <form id="feedbackForm">
         <label for="name">Your Name:</label><br>
         <input type="text" id="name" name="name" required><br><br>
-        
+
         <label for="email">Your Email:</label><br>
         <input type="email" id="email" name="email" required><br><br>
-        
+
         <label for="comments">Your Feedback:</label><br>
         <textarea id="comments" name="comments" rows="5" required></textarea><br><br>
-        
+
         <button type="submit">Submit</button>
     </form>
+
+    <script>
+        document.getElementById("feedbackForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const formData = {
+                name: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                comments: document.getElementById("comments").value
+            };
+
+            fetch("https://script.google.com/macros/s/AKfycbxMdAmEpJ9h1rZxUNHMwYfsjx1Wvst5iDStCfQlGMZMfa7Ly3AVBnnfN55xWiCmhs8aYg/exec", {
+                method: "POST",
+                body: JSON.stringify(formData),
+                headers: { "Content-Type": "application/json" }
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert("Feedback submitted successfully!");
+                document.getElementById("feedbackForm").reset();
+            })
+            .catch(error => console.error("Error:", error));
+        });
+    </script>
+
 </body>
 </html>
