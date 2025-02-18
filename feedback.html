@@ -14,22 +14,9 @@
             text-align: left;
             margin-top: 20px;
         }
-        #confirmationMessage {
-            display: none;
-            color: green;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        #errorMessage {
-            display: none;
-            color: red;
-            font-weight: bold;
-            margin-top: 10px;
-        }
     </style>
 </head>
 <body>
-
     <h1>We value your feedback!</h1>
     <p>Let us know how we can improve your experience.</p>
 
@@ -46,37 +33,32 @@
         <button type="submit">Submit</button>
     </form>
 
-    <p id="confirmationMessage">✅ Feedback submitted successfully! Thank you. </p>
-    <p id="errorMessage">❌ Oops! Something went wrong. Please try again.</p>
+    <p id="responseMessage"></p>
 
     <script>
         document.getElementById("feedbackForm").addEventListener("submit", function(event) {
-            event.preventDefault();
+            event.preventDefault(); // Prevent form from refreshing page
 
             var formData = new FormData(this);
+            var scriptURL = "https://script.google.com/macros/s/AKfycby5bx40uAyu_lRiD23TcsuIpTNR88llO3h0GSnrIkzPUpu5epCFXi43FlTgGz-DBWLB9w/exec"; // Replace with your script URL
 
-            fetch("https://script.google.com/macros/s/AKfycbwXB3RG5tcoA4mhRSFZiJCWGwrXeXYaM1t7cKuHt6wh76qyVPdrEWJF5PmkxDNTTilMiQ/exec", {
-                method: "POST",
-                body: formData
-            })
+            fetch(scriptURL, { method: "POST", body: formData })
             .then(response => response.text())
-            .then(data => {
-                if (data.trim() === "Success") {
-                    document.getElementById("confirmationMessage").style.display = "block";
-                    document.getElementById("errorMessage").style.display = "none";
+            .then(text => {
+                if (text.trim() === "Success") {
+                    document.getElementById("responseMessage").innerHTML = "✅ Thank you! Your feedback has been submitted.";
+                    document.getElementById("responseMessage").style.color = "green";
                     document.getElementById("feedbackForm").reset();
                 } else {
-                    document.getElementById("confirmationMessage").style.display = "none";
-                    document.getElementById("errorMessage").style.display = "block";
+                    document.getElementById("responseMessage").innerHTML = "❌ Oops! Something went wrong. Please try again.";
+                    document.getElementById("responseMessage").style.color = "red";
                 }
             })
             .catch(error => {
-                console.error("Error:", error);
-                document.getElementById("confirmationMessage").style.display = "none";
-                document.getElementById("errorMessage").style.display = "block";
+                document.getElementById("responseMessage").innerHTML = "❌ Error: " + error.message;
+                document.getElementById("responseMessage").style.color = "red";
             });
         });
     </script>
-
 </body>
 </html>
