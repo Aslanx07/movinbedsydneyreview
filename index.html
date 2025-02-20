@@ -16,24 +16,48 @@
         .stars {
             font-size: 40px;
             cursor: pointer;
+            color: lightgray;
+            display: inline-block;
+            transition: color 0.3s;
+        }
+        .stars:hover,
+        .stars.selected {
+            color: gold;
+        }
+        #responseMessage {
+            margin-top: 15px;
+            font-weight: bold;
         }
     </style>
     <script>
         function rateExperience(stars) {
-            if (stars <= 3) {
-                window.location.href = "feedback.html"; // Redirects to feedback form
-            } else {
-                window.location.href = "https://g.page/r/CYiooDaKWDGKEAE/review"; // Replace with actual Google Review link
-            }
+            let allStars = document.querySelectorAll(".stars");
+            
+            // Highlight the selected stars
+            allStars.forEach((star, index) => {
+                if (index < stars) {
+                    star.classList.add("selected");
+                } else {
+                    star.classList.remove("selected");
+                }
+            });
+
+            setTimeout(() => {
+                if (stars <= 3) {
+                    window.location.href = "https://wkf.ms/3Wvgnrs"; // Replace with actual feedback form URL
+                } else {
+                    window.location.href = "https://g.page/r/CYiooDaKWDGKEAE/review"; // Replace with actual Google Review link
+                }
+            }, 500); // Short delay to show selection before redirect
         }
     </script>
 </head>
 <body>
     <img src="logo.png" alt="Mov'in Bed Logo"> 
     <h1>How was your movie night?</h1>
-    <p> Hi! Thank you for coming to Mov'in Bed Cinema!</p>
-    <p> How would you rate your experience?</p>
-    
+    <p>Hi! Thank you for coming to Mov'in Bed Cinema!</p>
+    <p>How would you rate your experience?</p>
+
     <div>
         <span class="stars" onclick="rateExperience(1)">⭐</span>
         <span class="stars" onclick="rateExperience(2)">⭐</span>
@@ -41,5 +65,7 @@
         <span class="stars" onclick="rateExperience(4)">⭐</span>
         <span class="stars" onclick="rateExperience(5)">⭐</span>
     </div>
+
+    <p id="responseMessage"></p>
 </body>
 </html>
